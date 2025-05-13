@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volumize - Professional 3D Printing Service</title>
+    <meta name="description" content="Upload and preview your 3D models for printing">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/STLLoader.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Security headers for static site -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' cdnjs.cloudflare.com cdn.jsdelivr.net; script-src 'self' 'unsafe-inline' 'unsafe-eval' cdnjs.cloudflare.com cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' cdnjs.cloudflare.com; font-src 'self' data: cdnjs.cloudflare.com; img-src 'self' data: https: via.placeholder.com; worker-src 'self' blob:; connect-src 'self' blob:;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="nav-logo">Volumize</a>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#services">Services</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <h1>Turn Your 3D Models Into Reality</h1>
+        <p>Professional 3D printing service with quality guarantees and fast turnaround times.</p>
+    </section>
+
+    <div class="container">
+        <section id="services">
+            <h2>Our Services</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Custom 3D Printing</h3>
+                    <p>Upload your STL file and get high-quality 3D prints with various materials and finishes.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Rapid Prototyping</h3>
+                    <p>Quick turnaround times for prototype development and testing.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Quality Guarantee</h3>
+                    <p>100% satisfaction guarantee with our premium quality control process.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works">
+            <h2>How It Works</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>1. Upload</h3>
+                    <p>Upload your STL file and preview it in real-time</p>
+                </div>
+                <div class="feature-card">
+                    <h3>2. Customize</h3>
+                    <p>Choose material, color, and quality settings</p>
+                </div>
+                <div class="feature-card">
+                    <h3>3. Order</h3>
+                    <p>Place your order and track its progress</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="order-form">
+            <h2>Start Your Order</h2>
+            <div class="upload-section">
+                <h3>Upload Your 3D Model</h3>
+                <div class="file-upload-container">
+                    <input type="file" id="fileUpload" accept=".stl" />
+                    <label for="fileUpload" class="file-upload-label">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        Choose STL File to Upload
+                    </label>
+                </div>
+                <div id="previewContainer"></div>
+            </div>
+            
+            <div class="options-container">
+                <h3>Print Settings</h3>
+                <div class="print-options">
+                    <label for="material">Material Type:</label>
+                    <select id="material">
+                        <option value="PLA">PLA</option>
+                        <option value="ABS">ABS</option>
+                        <option value="PETG">PETG</option>
+                        <option value="TPU">TPU Flex</option>
+                    </select>
+
+                    <label for="color">Color:</label>
+                        <select id="color">
+                        <option value="red">🟥 Red</option>
+                        <option value="orange">🟧 Orange</option>
+                        <option value="yellow">🟨 Yellow</option>
+                        <option value="green">🟩 Green</option>
+                        <option value="blue">🟦 Blue</option>
+                        <option value="purple" selected>🟪 Purple</option>
+                        <option value="brown">🟫 Brown</option>
+                        <option value="black">⬛ Black</option>
+                        <option value="white">⬜ White</option>
+                    </select>
+                    <label for="infill">Infill Density: <span id="infillValue">20%</span></label>
+                    <input type="range" id="infill" min="0" max="100" value="20" step="1" />
+                </div>
+            </div>
+
+            <h3>Select Your Service Level</h3>
+            <div class="pricing-options">
+                <div class="pricing-option" data-price="0.10">
+                    <h3>Basic</h3>
+                    <p class="price">$0.10/cm³</p>
+                    <ul class="perks-list">
+                        <li>Standard quality print</li>
+                        <li>Basic support removal</li>
+                        <li>Standard shipping</li>
+                    </ul>
+                </div>
+
+                <div class="pricing-option" data-price="0.15">
+                    <h3>Pro</h3>
+                    <p class="price">$0.15/cm³</p>
+                    <ul class="perks-list">
+                        <li>High quality print</li>
+                        <li>Professional finishing</li>
+                        <li>Express shipping</li>
+                        <li>Priority support</li>
+                    </ul>
+                </div>
+
+                <div class="pricing-option" data-price="0.20">
+                    <h3>Ultra</h3>
+                    <p class="price">$0.20/cm³</p>
+                    <ul class="perks-list">
+                        <li>Ultra-high quality print</li>
+                        <li>Premium finishing</li>
+                        <li>Next-day shipping</li>
+                        <li>24/7 support</li>
+                        <li>Quality guarantee</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="order-summary">
+                <h3>Order Summary</h3>
+                <p>Volume: <span id="volumeDisplay">-</span> cm³</p>                <p>Dimensions: <span id="dimensionsDisplay">-</span></p>
+                <p>Estimated Price: $<span id="priceDisplay">0.00</span></p>
+            </div>
+
+            <button id="checkoutButton">Proceed to Checkout</button>
+        </section>
+
+        <section id="gallery" class="gallery">
+            <h2>Gallery</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <img src="images/mechanical_part.jpg" alt="Mechanical Parts" onerror="this.src='https://via.placeholder.com/300x200?text=Mechanical+Parts'">
+                    <h3>Mechanical Parts</h3>
+                    <p>Precision engineered components</p>
+                </div>
+                <div class="feature-card">
+                    <img src="images/architectural_model.jpg" alt="Architectural Models" onerror="this.src='https://via.placeholder.com/300x200?text=Architectural+Models'">
+                    <h3>Architectural Models</h3>
+                    <p>Detailed architectural prototypes</p>
+                </div>
+                <div class="feature-card">
+                    <img src="images/custom_design.jpg" alt="Custom Designs" onerror="this.src='https://via.placeholder.com/300x200?text=Custom+Designs'">
+                    <h3>Custom Designs</h3>
+                    <p>Unique custom projects</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <div class="feature-card">
+                <p>Questions about your order or our services? Get in touch!</p>
+                <p>Email: support@volumize.com</p>
+                <p>Phone: (555) 123-4567</p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About Us</h4>
+                <ul>
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">Team</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">3D Printing</a></li>
+                    <li><a href="#">Prototyping</a></li>
+                    <li><a href="#">Custom Orders</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Shipping</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="main.js"></script>
+</body>
+</html>

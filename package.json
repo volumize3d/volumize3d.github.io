@@ -1,0 +1,12 @@
+{
+  "name": "volumize-website",
+  "version": "1.0.0",
+  "description": "3D printing service website - Static Version",
+  "private": true,
+  "scripts": {
+    "start": "serve src"
+  },
+  "dependencies": {
+    "serve": "^14.2.0"
+  }
+}
